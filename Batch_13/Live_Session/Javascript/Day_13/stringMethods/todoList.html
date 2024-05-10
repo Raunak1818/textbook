@@ -29,15 +29,27 @@
             else{
                 alert('Please fill the Details');
             }
+            displayTask();
         }
         function displayTask(){
             const taskList=document.getElementById('taskList');
             taskList.innerHTML='';
             for (let i = 0; i <tasks.length; i++) {
-                const taskItem = document.createEvent('li');
+                const taskItem = document.createElement('li');
                 taskItem.textContent=tasks[i];
+                const buttonDelete=document.createElement('button');
+                buttonDelete.textContent='Delete';
+                buttonDelete.onclick=function(){
+                    deleteTask(i);
+                }
                 taskList.appendChild(taskItem);
+                // taskList.appendChild(buttonDelete);
+                taskItem.appendChild(buttonDelete);
                 
+                function deleteTask(i){
+                    tasks.splice(i,1);
+                    displayTask();
+                }
             }
         }
     </script> 
